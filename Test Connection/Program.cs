@@ -12,10 +12,10 @@ namespace Test_Connection
         static void Main(string[] args)
         {
             string conn = @"Data Source=KUSARI-PC\SQLEXPRESS;Initial Catalog=NORTHWND;Integrated Security=True";
-            SqlConnection connection = new SqlConnection(conn);
-            connection.Open();
-            Console.WriteLine("Connection established");
-            connection.Close();
+            using (SqlConnection connection = new SqlConnection(conn))
+            {
+                Console.WriteLine("Connection established");
+            }
         }
     }
 }
