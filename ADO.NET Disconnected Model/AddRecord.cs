@@ -30,7 +30,7 @@ namespace ADO.NET_Disconnected_Model
             using(DataSet dataSet = new DataSet())
             {
                 adapter.Fill(dataSet, "Employees2");
-                dataSet.Tables[0].Constraints.Add("Empno_PK",
+                dataSet.Tables[0].Constraints.Add("Empno_PK", // dodaje constraint
                     dataSet.Tables[0].Columns[0], true);
 
 
