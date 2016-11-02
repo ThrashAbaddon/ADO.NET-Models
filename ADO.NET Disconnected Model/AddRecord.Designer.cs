@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.button1 = new System.Windows.Forms.Button();
             this.dtpHireDate = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
@@ -40,8 +41,20 @@
             this.tabInsert = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.nORTHWNDDataSet = new ADO.NET_Disconnected_Model.NORTHWNDDataSet();
+            this.employees2BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.employees2TableAdapter = new ADO.NET_Disconnected_Model.NORTHWNDDataSetTableAdapters.Employees2TableAdapter();
+            this.empnoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.enameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.salaryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hiredateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabInsert.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nORTHWNDDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.employees2BindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -149,6 +162,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.dataGridView1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -156,6 +170,61 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.empnoDataGridViewTextBoxColumn,
+            this.enameDataGridViewTextBoxColumn,
+            this.salaryDataGridViewTextBoxColumn,
+            this.hiredateDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.employees2BindingSource;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(373, 222);
+            this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // nORTHWNDDataSet
+            // 
+            this.nORTHWNDDataSet.DataSetName = "NORTHWNDDataSet";
+            this.nORTHWNDDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // employees2BindingSource
+            // 
+            this.employees2BindingSource.DataMember = "Employees2";
+            this.employees2BindingSource.DataSource = this.nORTHWNDDataSet;
+            // 
+            // employees2TableAdapter
+            // 
+            this.employees2TableAdapter.ClearBeforeFill = true;
+            // 
+            // empnoDataGridViewTextBoxColumn
+            // 
+            this.empnoDataGridViewTextBoxColumn.DataPropertyName = "Empno";
+            this.empnoDataGridViewTextBoxColumn.HeaderText = "Empno";
+            this.empnoDataGridViewTextBoxColumn.Name = "empnoDataGridViewTextBoxColumn";
+            // 
+            // enameDataGridViewTextBoxColumn
+            // 
+            this.enameDataGridViewTextBoxColumn.DataPropertyName = "Ename";
+            this.enameDataGridViewTextBoxColumn.HeaderText = "Ename";
+            this.enameDataGridViewTextBoxColumn.Name = "enameDataGridViewTextBoxColumn";
+            // 
+            // salaryDataGridViewTextBoxColumn
+            // 
+            this.salaryDataGridViewTextBoxColumn.DataPropertyName = "Salary";
+            this.salaryDataGridViewTextBoxColumn.HeaderText = "Salary";
+            this.salaryDataGridViewTextBoxColumn.Name = "salaryDataGridViewTextBoxColumn";
+            // 
+            // hiredateDataGridViewTextBoxColumn
+            // 
+            this.hiredateDataGridViewTextBoxColumn.DataPropertyName = "Hiredate";
+            this.hiredateDataGridViewTextBoxColumn.HeaderText = "Hiredate";
+            this.hiredateDataGridViewTextBoxColumn.Name = "hiredateDataGridViewTextBoxColumn";
             // 
             // AddRecord
             // 
@@ -165,9 +234,14 @@
             this.Controls.Add(this.tabInsert);
             this.Name = "AddRecord";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.AddRecord_Load);
             this.tabInsert.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nORTHWNDDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.employees2BindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -186,6 +260,14 @@
         private System.Windows.Forms.TabControl tabInsert;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private NORTHWNDDataSet nORTHWNDDataSet;
+        private System.Windows.Forms.BindingSource employees2BindingSource;
+        private NORTHWNDDataSetTableAdapters.Employees2TableAdapter employees2TableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn empnoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn enameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn salaryDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hiredateDataGridViewTextBoxColumn;
     }
 }
 

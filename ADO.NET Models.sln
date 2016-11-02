@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADO.NET Disconnected Model"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test Connection", "Test Connection\Test Connection.csproj", "{3D87BE95-1636-4830-A075-5707686CF356}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApplication1", "WindowsFormsApplication1\WindowsFormsApplication1.csproj", "{70FA896D-221E-4D47-8ACB-AB642090542F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{3D87BE95-1636-4830-A075-5707686CF356}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D87BE95-1636-4830-A075-5707686CF356}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D87BE95-1636-4830-A075-5707686CF356}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70FA896D-221E-4D47-8ACB-AB642090542F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70FA896D-221E-4D47-8ACB-AB642090542F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70FA896D-221E-4D47-8ACB-AB642090542F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70FA896D-221E-4D47-8ACB-AB642090542F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

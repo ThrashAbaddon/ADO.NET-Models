@@ -23,11 +23,6 @@ namespace ADO.NET_Disconnected_Model
 
         private void button1_Click(object sender, EventArgs e)
         {
-            InsertIntoDB();
-        }
-
-        static void InsertIntoDB()
-        {
             using (SqlConnection connection = new SqlConnection(connectionString))
             using (SqlDataAdapter adapter =
                 new SqlDataAdapter("SELECT * FROM Employees2", connection))
@@ -49,6 +44,33 @@ namespace ADO.NET_Disconnected_Model
                 adapter.Update(dataSet.Tables[0]);
                 MessageBox.Show("Employee Record Added.", this.Text);
             }
+        }
+
+        public void ShowEmployeesLoad(object sender, EventArgs e)
+        {
+            
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlDataAdapter adapter =
+                new SqlDataAdapter("SELECT * FROM Employees2", connection))
+            using (DataSet dataSet = new DataSet())
+            {
+                //fill the dataset object
+                adapter.Fill(dataSet, "Employees2");
+                //use dataset object as datasource
+                dataGridView1.DataSource = dataSet.Tables[0];
+            }
+        }
+
+        private void AddRecord_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'nORTHWNDDataSet.Employees2' table. You can move, or remove it, as needed.
+            this.employees2TableAdapter.Fill(this.nORTHWNDDataSet.Employees2);
+
         }
     }
 }
