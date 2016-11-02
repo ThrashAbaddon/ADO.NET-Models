@@ -40,21 +40,32 @@
             this.txtEmpno = new System.Windows.Forms.TextBox();
             this.tabInsert = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tablePage2 = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.nORTHWNDDataSet = new ADO.NET_Disconnected_Model.NORTHWNDDataSet();
-            this.employees2BindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.employees2TableAdapter = new ADO.NET_Disconnected_Model.NORTHWNDDataSetTableAdapters.Employees2TableAdapter();
             this.empnoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.enameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.salaryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hiredateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.employees2BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.nORTHWNDDataSet = new ADO.NET_Disconnected_Model.NORTHWNDDataSet();
+            this.employees2TableAdapter = new ADO.NET_Disconnected_Model.NORTHWNDDataSetTableAdapters.Employees2TableAdapter();
+            this.tablePage3 = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.tabInsert.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.tablePage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nORTHWNDDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.employees2BindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nORTHWNDDataSet)).BeginInit();
+            this.tablePage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -134,8 +145,9 @@
             // tabInsert
             // 
             this.tabInsert.Controls.Add(this.tabPage1);
-            this.tabInsert.Controls.Add(this.tabPage2);
-            this.tabInsert.Location = new System.Drawing.Point(13, 13);
+            this.tabInsert.Controls.Add(this.tablePage2);
+            this.tabInsert.Controls.Add(this.tablePage3);
+            this.tabInsert.Location = new System.Drawing.Point(12, 12);
             this.tabInsert.Name = "tabInsert";
             this.tabInsert.SelectedIndex = 0;
             this.tabInsert.Size = new System.Drawing.Size(387, 254);
@@ -157,19 +169,19 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(379, 228);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.Text = "Insert";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // tablePage2
             // 
-            this.tabPage2.Controls.Add(this.dataGridView1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(379, 228);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tablePage2.Controls.Add(this.dataGridView1);
+            this.tablePage2.Location = new System.Drawing.Point(4, 22);
+            this.tablePage2.Name = "tablePage2";
+            this.tablePage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tablePage2.Size = new System.Drawing.Size(379, 228);
+            this.tablePage2.TabIndex = 1;
+            this.tablePage2.Text = "View Table";
+            this.tablePage2.UseVisualStyleBackColor = true;
             // 
             // dataGridView1
             // 
@@ -187,20 +199,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(373, 222);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // nORTHWNDDataSet
-            // 
-            this.nORTHWNDDataSet.DataSetName = "NORTHWNDDataSet";
-            this.nORTHWNDDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // employees2BindingSource
-            // 
-            this.employees2BindingSource.DataMember = "Employees2";
-            this.employees2BindingSource.DataSource = this.nORTHWNDDataSet;
-            // 
-            // employees2TableAdapter
-            // 
-            this.employees2TableAdapter.ClearBeforeFill = true;
             // 
             // empnoDataGridViewTextBoxColumn
             // 
@@ -226,6 +224,113 @@
             this.hiredateDataGridViewTextBoxColumn.HeaderText = "Hiredate";
             this.hiredateDataGridViewTextBoxColumn.Name = "hiredateDataGridViewTextBoxColumn";
             // 
+            // employees2BindingSource
+            // 
+            this.employees2BindingSource.DataMember = "Employees2";
+            this.employees2BindingSource.DataSource = this.nORTHWNDDataSet;
+            // 
+            // nORTHWNDDataSet
+            // 
+            this.nORTHWNDDataSet.DataSetName = "NORTHWNDDataSet";
+            this.nORTHWNDDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // employees2TableAdapter
+            // 
+            this.employees2TableAdapter.ClearBeforeFill = true;
+            // 
+            // tablePage3
+            // 
+            this.tablePage3.Controls.Add(this.label8);
+            this.tablePage3.Controls.Add(this.label7);
+            this.tablePage3.Controls.Add(this.label6);
+            this.tablePage3.Controls.Add(this.label5);
+            this.tablePage3.Controls.Add(this.textBox4);
+            this.tablePage3.Controls.Add(this.textBox3);
+            this.tablePage3.Controls.Add(this.textBox2);
+            this.tablePage3.Controls.Add(this.textBox1);
+            this.tablePage3.Controls.Add(this.button2);
+            this.tablePage3.Location = new System.Drawing.Point(4, 22);
+            this.tablePage3.Name = "tablePage3";
+            this.tablePage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tablePage3.Size = new System.Drawing.Size(379, 228);
+            this.tablePage3.TabIndex = 2;
+            this.tablePage3.Text = "SearchEmployee";
+            this.tablePage3.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(280, 20);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 0;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(145, 23);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 1;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(145, 80);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(210, 20);
+            this.textBox2.TabIndex = 2;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(145, 128);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(210, 20);
+            this.textBox3.TabIndex = 3;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(145, 173);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(210, 20);
+            this.textBox4.TabIndex = 4;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(47, 26);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(69, 13);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "Employee # :";
+            this.label5.UseWaitCursor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(26, 83);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(90, 13);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "Employee Name :";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(74, 131);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(42, 13);
+            this.label7.TabIndex = 7;
+            this.label7.Text = "Salary :";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(63, 176);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(53, 13);
+            this.label8.TabIndex = 8;
+            this.label8.Text = "Hiredate :";
+            // 
             // AddRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -238,10 +343,12 @@
             this.tabInsert.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
+            this.tablePage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nORTHWNDDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.employees2BindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nORTHWNDDataSet)).EndInit();
+            this.tablePage3.ResumeLayout(false);
+            this.tablePage3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -259,7 +366,7 @@
         private System.Windows.Forms.TextBox txtEmpno;
         private System.Windows.Forms.TabControl tabInsert;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tablePage2;
         private System.Windows.Forms.DataGridView dataGridView1;
         private NORTHWNDDataSet nORTHWNDDataSet;
         private System.Windows.Forms.BindingSource employees2BindingSource;
@@ -268,6 +375,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn enameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn salaryDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn hiredateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.TabPage tablePage3;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button2;
     }
 }
 
