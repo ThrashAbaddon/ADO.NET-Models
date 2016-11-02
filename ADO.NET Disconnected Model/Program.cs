@@ -13,7 +13,9 @@ namespace ADO.NET_Disconnected_Model
         /// </summary>
         [STAThread]
         static void Main()
+
         {
+            string conn = @"Data Source=KUSARI-PC\SQLEXPRESS;Initial Catalog=NORTHWND;Integrated Security=True";
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
