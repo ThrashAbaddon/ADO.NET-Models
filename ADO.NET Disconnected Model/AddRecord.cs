@@ -52,7 +52,7 @@ namespace ADO.NET_Disconnected_Model
 
         public void ShowEmployeesLoad(object sender, EventArgs e)
         {
-            
+
 
         }
 
@@ -60,13 +60,13 @@ namespace ADO.NET_Disconnected_Model
         {
             using (connection = new SqlConnection(connectionString))
             using (adapter = new SqlDataAdapter("SELECT * FROM Employees2", connection))
-            using (dataSet = new DataSet())
             {
+                dataSet = new DataSet();
                 //fill the dataset object
                 adapter.Fill(dataSet, "Employees2");
                 // add primary key constraint
-                dataSet.Tables["Employees"].Constraints.Add("Empno_PK",
-                    dataSet.Tables["Employees"].Columns["Empno"], true);
+                dataSet.Tables["Employees2"].Constraints.Add("Empno_PK",
+                    dataSet.Tables["Employees2"].Columns["Empno"], true);
             }
 
         }
@@ -100,7 +100,28 @@ namespace ADO.NET_Disconnected_Model
         private void btnSearch_Click(object sender, EventArgs e)
         {
             int empno = int.Parse(txtEmpno.Text);
-            if()
+            // postoji li redak sa tim recordom?
+            //TODO otkrij zasto ovo throwa
+            if (dataSet.Tables["Employees2"].Rows.Contains(empno) == true)
+            {
+                DataRow row;
+                row = dataSet.Tables["Employees2"].Rows.Find(empno);
+                txtEname.Text = row["Ename"].ToString();
+                txtSalary.Text = row["Salary"].ToString();
+                dtpHireDate.Text = row["Hiredate"].ToString();
+            }
+            else
+            {
+                MessageBox.Show("Record doesn't exist", "Error");
+                txtEname.Clear();
+                txtEmpno.Clear();
+                dtpHireDate.Dispose();
+            }
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
