@@ -23,11 +23,16 @@ namespace ADO.NET_Disconnected_Model
 
         private void button1_Click(object sender, EventArgs e)
         {
+            InsertIntoDB();
+        }
+
+        static void InsertIntoDB()
+        {
             using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlDataAdapter adapter = 
+            using (SqlDataAdapter adapter =
                 new SqlDataAdapter("SELECT * FROM Employees2", connection))
             using (SqlCommandBuilder commandBuilder = new SqlCommandBuilder(adapter))
-            using(DataSet dataSet = new DataSet())
+            using (DataSet dataSet = new DataSet())
             {
                 adapter.Fill(dataSet, "Employees2");
                 dataSet.Tables[0].Constraints.Add("Empno_PK", // dodaje constraint
@@ -44,7 +49,6 @@ namespace ADO.NET_Disconnected_Model
                 adapter.Update(dataSet.Tables[0]);
                 MessageBox.Show("Employee Record Added.", this.Text);
             }
-
         }
     }
 }
