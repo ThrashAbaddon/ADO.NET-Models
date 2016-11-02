@@ -16,6 +16,10 @@ namespace ADO.NET_Disconnected_Model
         private string connectionString =
             @"Data Source=KUSARI-PC\SQLEXPRESS;Initial Catalog=NORTHWND;Integrated Security=True";
 
+        SqlConnection connection;
+        SqlDataAdapter adapter;
+        DataSet dataSet;
+
         public AddRecord()
         {
             InitializeComponent();
@@ -54,10 +58,9 @@ namespace ADO.NET_Disconnected_Model
 
         public void SearchEmployeeLoad(object sender, EventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlDataAdapter adapter =
-                new SqlDataAdapter("SELECT * FROM Employees2", connection))
-            using (DataSet dataSet = new DataSet())
+            using (connection = new SqlConnection(connectionString))
+            using (adapter = new SqlDataAdapter("SELECT * FROM Employees2", connection))
+            using (dataSet = new DataSet())
             {
                 //fill the dataset object
                 adapter.Fill(dataSet, "Employees2");
@@ -96,7 +99,8 @@ namespace ADO.NET_Disconnected_Model
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-
+            int empno = int.Parse(txtEmpno.Text);
+            if()
         }
     }
 }
