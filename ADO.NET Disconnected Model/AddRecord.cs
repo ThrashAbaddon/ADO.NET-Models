@@ -52,6 +52,22 @@ namespace ADO.NET_Disconnected_Model
 
         }
 
+        public void SearchEmployeeLoad(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlDataAdapter adapter =
+                new SqlDataAdapter("SELECT * FROM Employees2", connection))
+            using (DataSet dataSet = new DataSet())
+            {
+                //fill the dataset object
+                adapter.Fill(dataSet, "Employees2");
+                // add primary key constraint
+                dataSet.Tables["Employees"].Constraints.Add("Empno_PK",
+                    dataSet.Tables["Employees"].Columns["Empno"], true);
+            }
+
+        }
+
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -70,6 +86,16 @@ namespace ADO.NET_Disconnected_Model
         {
             // TODO: This line of code loads data into the 'nORTHWNDDataSet.Employees2' table. You can move, or remove it, as needed.
             this.employees2TableAdapter.Fill(this.nORTHWNDDataSet.Employees2);
+
+        }
+
+        private void tablePage3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
 
         }
     }
