@@ -53,12 +53,13 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtBoxEmpHiredateOut = new System.Windows.Forms.TextBox();
+            this.txtBoxEmpSalaryOut = new System.Windows.Forms.TextBox();
+            this.txtBoxEmpNameOut = new System.Windows.Forms.TextBox();
+            this.txtBoxIdInsert = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.employees2TableAdapter = new ADO.NET_Disconnected_Model.NORTHWNDDataSetTableAdapters.Employees2TableAdapter();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.tabInsert.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tablePage2.SuspendLayout();
@@ -147,6 +148,7 @@
             this.tabInsert.Controls.Add(this.tabPage1);
             this.tabInsert.Controls.Add(this.tablePage2);
             this.tabInsert.Controls.Add(this.tablePage3);
+            this.tabInsert.Cursor = System.Windows.Forms.Cursors.Default;
             this.tabInsert.Location = new System.Drawing.Point(12, 12);
             this.tabInsert.Name = "tabInsert";
             this.tabInsert.SelectedIndex = 0;
@@ -237,14 +239,15 @@
             // 
             // tablePage3
             // 
+            this.tablePage3.Controls.Add(this.btnUpdate);
             this.tablePage3.Controls.Add(this.label8);
             this.tablePage3.Controls.Add(this.label7);
             this.tablePage3.Controls.Add(this.label6);
             this.tablePage3.Controls.Add(this.label5);
-            this.tablePage3.Controls.Add(this.textBox4);
-            this.tablePage3.Controls.Add(this.textBox3);
-            this.tablePage3.Controls.Add(this.textBox2);
-            this.tablePage3.Controls.Add(this.textBox1);
+            this.tablePage3.Controls.Add(this.txtBoxEmpHiredateOut);
+            this.tablePage3.Controls.Add(this.txtBoxEmpSalaryOut);
+            this.tablePage3.Controls.Add(this.txtBoxEmpNameOut);
+            this.tablePage3.Controls.Add(this.txtBoxIdInsert);
             this.tablePage3.Controls.Add(this.button2);
             this.tablePage3.Location = new System.Drawing.Point(4, 22);
             this.tablePage3.Name = "tablePage3";
@@ -258,7 +261,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(63, 176);
+            this.label8.Location = new System.Drawing.Point(63, 142);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(53, 13);
             this.label8.TabIndex = 8;
@@ -267,7 +270,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(74, 131);
+            this.label7.Location = new System.Drawing.Point(74, 101);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(42, 13);
             this.label7.TabIndex = 7;
@@ -276,7 +279,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(26, 83);
+            this.label6.Location = new System.Drawing.Point(26, 63);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(90, 13);
             this.label6.TabIndex = 6;
@@ -292,33 +295,33 @@
             this.label5.Text = "Employee # :";
             this.label5.UseWaitCursor = true;
             // 
-            // textBox4
+            // txtBoxEmpHiredateOut
             // 
-            this.textBox4.Location = new System.Drawing.Point(145, 173);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(210, 20);
-            this.textBox4.TabIndex = 4;
+            this.txtBoxEmpHiredateOut.Location = new System.Drawing.Point(145, 139);
+            this.txtBoxEmpHiredateOut.Name = "txtBoxEmpHiredateOut";
+            this.txtBoxEmpHiredateOut.Size = new System.Drawing.Size(210, 20);
+            this.txtBoxEmpHiredateOut.TabIndex = 4;
             // 
-            // textBox3
+            // txtBoxEmpSalaryOut
             // 
-            this.textBox3.Location = new System.Drawing.Point(145, 128);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(210, 20);
-            this.textBox3.TabIndex = 3;
+            this.txtBoxEmpSalaryOut.Location = new System.Drawing.Point(145, 98);
+            this.txtBoxEmpSalaryOut.Name = "txtBoxEmpSalaryOut";
+            this.txtBoxEmpSalaryOut.Size = new System.Drawing.Size(210, 20);
+            this.txtBoxEmpSalaryOut.TabIndex = 3;
             // 
-            // textBox2
+            // txtBoxEmpNameOut
             // 
-            this.textBox2.Location = new System.Drawing.Point(145, 80);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(210, 20);
-            this.textBox2.TabIndex = 2;
+            this.txtBoxEmpNameOut.Location = new System.Drawing.Point(145, 63);
+            this.txtBoxEmpNameOut.Name = "txtBoxEmpNameOut";
+            this.txtBoxEmpNameOut.Size = new System.Drawing.Size(210, 20);
+            this.txtBoxEmpNameOut.TabIndex = 2;
             // 
-            // textBox1
+            // txtBoxIdInsert
             // 
-            this.textBox1.Location = new System.Drawing.Point(145, 23);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 1;
+            this.txtBoxIdInsert.Location = new System.Drawing.Point(145, 23);
+            this.txtBoxIdInsert.Name = "txtBoxIdInsert";
+            this.txtBoxIdInsert.Size = new System.Drawing.Size(100, 20);
+            this.txtBoxIdInsert.TabIndex = 1;
             // 
             // button2
             // 
@@ -333,6 +336,16 @@
             // employees2TableAdapter
             // 
             this.employees2TableAdapter.ClearBeforeFill = true;
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(280, 182);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(75, 23);
+            this.btnUpdate.TabIndex = 9;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // AddRecord
             // 
@@ -383,11 +396,12 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtBoxEmpHiredateOut;
+        private System.Windows.Forms.TextBox txtBoxEmpSalaryOut;
+        private System.Windows.Forms.TextBox txtBoxEmpNameOut;
+        private System.Windows.Forms.TextBox txtBoxIdInsert;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnUpdate;
     }
 }
 

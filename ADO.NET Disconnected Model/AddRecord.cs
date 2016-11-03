@@ -57,19 +57,7 @@ namespace ADO.NET_Disconnected_Model
         }
 
         public void SearchEmployeeLoad(object sender, EventArgs e)
-        {
-            using (connection = new SqlConnection(connectionString))
-            using (adapter = new SqlDataAdapter("SELECT * FROM Employees2", connection))
-            {
-                dataSet = new DataSet();
-                //fill the dataset object
-                adapter.Fill(dataSet, "Employees2");
-                // add primary key constraint
-                dataSet.Tables["Employees2"].Constraints.Add("Empno_PK",
-                    dataSet.Tables["Employees2"].Columns["Empno"], true);
-            }
-
-        }
+        {  }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -99,27 +87,45 @@ namespace ADO.NET_Disconnected_Model
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            int empno = int.Parse(txtEmpno.Text);
+            int empno = int.Parse(txtBoxIdInsert.Text);
             // postoji li redak sa tim recordom?
-            //TODO otkrij zasto ovo throwa
-            if (dataSet.Tables["Employees2"].Rows.Contains(empno) == true)
+
+
+            using (connection = new SqlConnection(connectionString))
+            using (adapter = new SqlDataAdapter("SELECT * FROM Employees2", connection))
+            using (dataSet = new DataSet())
             {
-                DataRow row;
-                row = dataSet.Tables["Employees2"].Rows.Find(empno);
-                txtEname.Text = row["Ename"].ToString();
-                txtSalary.Text = row["Salary"].ToString();
-                dtpHireDate.Text = row["Hiredate"].ToString();
-            }
-            else
-            {
-                MessageBox.Show("Record doesn't exist", "Error");
-                txtEname.Clear();
-                txtEmpno.Clear();
-                dtpHireDate.Dispose();
+                //fill the dataset object
+                adapter.Fill(dataSet, "Employees2");
+                // add primary key constraint
+                dataSet.Tables["Employees2"].Constraints.Add("Empno_PK",
+                    dataSet.Tables["Employees2"].Columns["Empno"], true);
+                
+                if (dataSet.Tables["Employees2"].Rows.Contains(empno) == true)
+                {
+                    DataRow row;
+                    row = dataSet.Tables["Employees2"].Rows.Find(empno);
+                    txtBoxEmpNameOut.Text = row["Ename"].ToString();
+                    txtBoxEmpSalaryOut.Text = row["Salary"].ToString();
+                    txtBoxEmpHiredateOut.Text = row["Hiredate"].ToString();
+                }
+                else
+                {
+                    MessageBox.Show("Record doesn't exist", "Error");
+                    txtBoxEmpNameOut.Clear();
+                    txtBoxIdInsert.Clear();
+                    txtBoxEmpSalaryOut.Clear();
+                    txtBoxEmpHiredateOut.Clear();
+                }
             }
         }
 
         private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
         {
 
         }
