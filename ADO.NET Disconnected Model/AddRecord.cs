@@ -18,6 +18,7 @@ namespace ADO.NET_Disconnected_Model
 
         SqlConnection connection;
         SqlDataAdapter adapter;
+        SqlCommandBuilder builder;
         DataSet dataSet;
 
         public AddRecord()
@@ -88,7 +89,7 @@ namespace ADO.NET_Disconnected_Model
         private void btnSearch_Click(object sender, EventArgs e)
         {
             int empno = int.Parse(txtBoxIdInsert.Text);
-            // postoji li redak sa tim recordom?
+            
 
 
             using (connection = new SqlConnection(connectionString))
@@ -100,7 +101,8 @@ namespace ADO.NET_Disconnected_Model
                 // add primary key constraint
                 dataSet.Tables["Employees2"].Constraints.Add("Empno_PK",
                     dataSet.Tables["Employees2"].Columns["Empno"], true);
-                
+
+                // postoji li redak sa tim recordom?
                 if (dataSet.Tables["Employees2"].Rows.Contains(empno) == true)
                 {
                     DataRow row;
@@ -127,7 +129,28 @@ namespace ADO.NET_Disconnected_Model
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            using (connection = new SqlConnection(connectionString))
+            using (adapter = new SqlDataAdapter("SELECT * FROM Employees2", connection))
+            using (builder = new SqlCommandBuilder(adapter))
+            using (dataSet = new DataSet())
+            {
+                //fill the dataset object
+                adapter.Fill(dataSet, "Employees2");
+                // add primary key constraint
+                dataSet.Tables["Employees2"].Constraints.Add("Empno_PK",
+                    dataSet.Tables["Employees2"].Columns["Empno"], true);
 
+                //code to update the data
+                int eno = int.Parse(txtBoxIdInsert.Text);
+                DataRow row;
+                row = dataSet.Tables["Employees2"].Rows.Find(eno);
+                row.BeginEdit();
+                row["Ename"] = txtBoxEmpNameOut.Text;
+                row["Salary"] = txtBoxEmpSalaryOut.Text;
+                row.EndEdit();
+                adapter.Update(dataSet.Tables["Employees2"]);
+                MessageBox.Show("Employee2 record updated.", "Update");
+            }
         }
     }
 }
