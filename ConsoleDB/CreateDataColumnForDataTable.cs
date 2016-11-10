@@ -8,10 +8,11 @@ namespace ConsoleDB
     class CreateDataColumnForDataTable
     {
         // Create the connection
-        static string sqlConnectString =
+        private static string _sqlConnectString =
             @"Data Source=KUSARI-PC\SQLEXPRESS;Initial Catalog=TSQL2012;Integrated Security=True;";
         static void Main(string[] args)
         {
+            GetTheResultFromDataSetOrDataTable();
         }
 
         static void AddsColumnsToTheTable()
@@ -112,7 +113,7 @@ namespace ConsoleDB
                                 FROM
                                     [HR].[Employees]";
             using (SqlDataAdapter da =
-                new SqlDataAdapter(sqlSelect, sqlConnectString))
+                new SqlDataAdapter(sqlSelect, _sqlConnectString))
             {
 
                 // Create the table mapping to map the default table name 'Employees'.
@@ -152,7 +153,7 @@ namespace ConsoleDB
             SqlConnection connection = new SqlConnection();
             try
             {
-                connection.ConnectionString = sqlConnectString;
+                connection.ConnectionString = _sqlConnectString;
                 // Create the scalar command and open the connection
                 SqlCommand command = new SqlCommand(sqlSelect, connection);
                 connection.Open();
@@ -180,7 +181,7 @@ namespace ConsoleDB
                                  FROM
                                      HR.Employees; ";
 
-            using (SqlConnection connection = new SqlConnection(sqlConnectString))
+            using (SqlConnection connection = new SqlConnection(_sqlConnectString))
             using (SqlCommand command = new SqlCommand(sqlSelect, connection))
             {
                 connection.Open();
@@ -217,7 +218,7 @@ namespace ConsoleDB
                                 FROM
                                     HR.Employees e";
 
-            using (SqlConnection connection = new SqlConnection(sqlConnectString))
+            using (SqlConnection connection = new SqlConnection(_sqlConnectString))
             using (SqlCommand command = new SqlCommand(sqlSelect, connection))
             {
                 connection.Open();
@@ -256,6 +257,41 @@ namespace ConsoleDB
                 Console.WriteLine("postalcode = {0}", o[11].ToString());
                 dr.Close();
             }
+        }
+
+
+        static void GetTheResultFromDataSetOrDataTable()
+        {
+            string sqlSelect = @"SELECT
+                                    e.lastname
+                                    ,e.firstname
+                                FROM
+                                    HR.Employees e;";
+
+            // Create a data adapter
+            using (var da = new SqlDataAdapter(sqlSelect, _sqlConnectString))
+
+            // Fill a DataTable using DataAdapter and output to console
+            using (DataTable dt = new DataTable())
+            {
+                da.Fill(dt);
+                Console.WriteLine("---DataTable---");
+                foreach (DataRow row in dt.Rows)
+                    Console.WriteLine("{0} {1}", row[0], row["firstname"]);
+
+                // Fill a DataSet using DataAdapter and output to console
+                using (DataSet ds = new DataSet())
+                {
+                    da.Fill(ds, "Employees");
+
+                    Console.WriteLine("\n---DataSet; DataTable count = {0}",
+                        ds.Tables.Count);
+                    Console.WriteLine("[TableName = {0}]", ds.Tables[0].TableName);
+                    foreach (DataRow row in ds.Tables["Employees"].Rows)
+                        Console.WriteLine("{0} {1}", row[0], row[1]);
+                }
+            }
+            Console.ReadLine();
         }
     }
 }
