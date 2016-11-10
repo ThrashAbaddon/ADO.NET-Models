@@ -67,5 +67,35 @@ namespace ConsoleDB
         }
 
 
+        static void DodajeTablicuSetu()
+        {
+            DataSet ds = new DataSet();
+
+            // Add a DataTable named Table-1 directly
+            DataTable dt1 = ds.Tables.Add("Table-1");
+            // ... Configure the DataTable -- add some columns, etc.
+
+            // Add a DataTable named Table-2 by creating the table
+            // and adding it to the DataSet
+            DataTable dt2 = new DataTable("Table-2");
+            // ... Configure the DataTable -- add some columns, etc.
+            ds.Tables.Add(dt2);
+
+            // Add multiple DataTables to the DataSet
+            DataTable dt3 = new DataTable("Table-3");
+            DataTable dt4 = new DataTable("Table-4");
+            // ... Configure the DataTable -- add some columns, etc.
+            ds.Tables.AddRange(new DataTable[] { dt3, dt4 });
+
+            // Output the tables in the DataSet to the console.
+            Console.WriteLine("DataSet has {0} DataTables named: ",
+                ds.Tables.Count);
+            foreach (DataTable dt in ds.Tables)
+                Console.WriteLine("\t{0}", dt.TableName);
+
+            Console.WriteLine("\nPress any key to continue.");
+            Console.ReadKey();
+
+        }
     }
 }
