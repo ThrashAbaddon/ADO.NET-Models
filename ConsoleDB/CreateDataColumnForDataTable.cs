@@ -12,8 +12,6 @@ namespace ConsoleDB
             @"Data Source=KUSARI-PC\SQLEXPRESS;Initial Catalog=TSQL2012;Integrated Security=True;";
         static void Main(string[] args)
         {
-            GetTableAndOutputFromDataReader();
-            // GetCount();
         }
 
         static void AddsColumnsToTheTable()
@@ -199,5 +197,66 @@ namespace ConsoleDB
                 }
             }
         }
+
+
+        static void AccessDataReaderInDifferentWays()
+        {
+            string sqlSelect = @"SELECT
+                                    e.empid
+                                   ,e.lastname
+                                   ,e.firstname
+                                   ,e.title
+                                   ,e.birthdate
+                                   ,e.[address]
+                                   ,e.hiredate
+                                   ,e.city
+                                   ,e.region
+                                   ,e.country
+                                   ,e.postalcode
+                                   ,e.phone
+                                FROM
+                                    HR.Employees e";
+
+            using (SqlConnection connection = new SqlConnection(sqlConnectString))
+            using (SqlCommand command = new SqlCommand(sqlSelect, connection))
+            {
+                connection.Open();
+
+                SqlDataReader dr = command.ExecuteReader();
+                dr.Read();
+                // Output fields from the first DataRow reader using different techniques
+                //for (int i = 0; i < dr.FieldCount; i++)
+                //{
+                //    Console.WriteLine(dr.GetName(i) + " " + dr[i]);
+                //}
+                Console.WriteLine("empid = {0}", dr[0]);
+                Console.WriteLine("lastname = {0}", dr["lastname"]);
+
+                Console.WriteLine("firstname = {0}", dr.IsDBNull(2) ? "NULL" : dr.GetString(2));
+                Console.WriteLine("title = {0}", dr.IsDBNull(3) ? "NULL" : dr.GetSqlString(3));
+                Console.WriteLine("birthdate = {0}", dr.IsDBNull(4) ? "NULL" : dr.GetDateTime(4).ToShortDateString());
+
+                Console.WriteLine("address = {0}", dr.GetValue(7));
+                Console.WriteLine("hiredate = {0}", dr["hiredate"].ToString());
+
+                // Get the column ordinal for the region attribute and use it to
+                // output the column
+                int coRegion = dr.GetOrdinal("region");
+                Console.WriteLine("region = {0}", dr[coRegion]);
+
+                // Get the column name for the country attribute
+                // and use it to output the column
+                string country = dr.GetName(10);
+                Console.WriteLine("country = {0}", dr[country]);
+
+                // Create an object array and load the row into it
+                object[] o = new object[dr.FieldCount];
+                // Output the postalcode attribute from the object array
+                dr.GetValues(o);
+                Console.WriteLine("postalcode = {0}", o[11].ToString());
+                dr.Close();
+            }
+        }
     }
 }
+
