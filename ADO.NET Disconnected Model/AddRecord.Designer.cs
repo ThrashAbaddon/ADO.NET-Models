@@ -49,6 +49,8 @@
             this.employees2BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.nORTHWNDDataSet = new ADO.NET_Disconnected_Model.NORTHWNDDataSet();
             this.tablePage3 = new System.Windows.Forms.TabPage();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -59,7 +61,7 @@
             this.txtBoxIdInsert = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.employees2TableAdapter = new ADO.NET_Disconnected_Model.NORTHWNDDataSetTableAdapters.Employees2TableAdapter();
-            this.btnUpdate = new System.Windows.Forms.Button();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.tabInsert.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tablePage2.SuspendLayout();
@@ -67,6 +69,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.employees2BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nORTHWNDDataSet)).BeginInit();
             this.tablePage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -239,6 +242,7 @@
             // 
             // tablePage3
             // 
+            this.tablePage3.Controls.Add(this.btnDelete);
             this.tablePage3.Controls.Add(this.btnUpdate);
             this.tablePage3.Controls.Add(this.label8);
             this.tablePage3.Controls.Add(this.label7);
@@ -257,6 +261,26 @@
             this.tablePage3.Text = "SearchEmployee";
             this.tablePage3.UseVisualStyleBackColor = true;
             this.tablePage3.Click += new System.EventHandler(this.tablePage3_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(280, 181);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 10;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.buttonDelete_Click);
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(145, 181);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(75, 23);
+            this.btnUpdate.TabIndex = 9;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // label8
             // 
@@ -337,16 +361,6 @@
             // 
             this.employees2TableAdapter.ClearBeforeFill = true;
             // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Location = new System.Drawing.Point(280, 182);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(75, 23);
-            this.btnUpdate.TabIndex = 9;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
             // AddRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -365,6 +379,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nORTHWNDDataSet)).EndInit();
             this.tablePage3.ResumeLayout(false);
             this.tablePage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -402,6 +417,8 @@
         private System.Windows.Forms.TextBox txtBoxIdInsert;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.BindingSource bindingSource1;
     }
 }
 

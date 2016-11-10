@@ -129,28 +129,63 @@ namespace ADO.NET_Disconnected_Model
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            
+
+
+
+            if (MessageBox.Show("Are you sure you want do delete this record", "Delete",
+               MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+
+                using (connection = new SqlConnection(connectionString))
+                using (adapter = new SqlDataAdapter("SELECT * FROM Employees2", connection))
+                using (builder = new SqlCommandBuilder(adapter))
+                using (dataSet = new DataSet())
+                {
+                    //fill the dataset object
+                    this.adapter.Fill(dataSet, "Employees2");
+                    // add primary key constraint
+                    this.dataSet.Tables["Employees2"].Constraints.Add("Empno_PK",
+                        dataSet.Tables["Employees2"].Columns["Empno"], true);
+
+                    //code to update the data
+                    int eno = int.Parse(txtBoxIdInsert.Text);
+                    DataRow row;
+                    row = dataSet.Tables["Employees2"].Rows.Find(eno);
+                    row.BeginEdit();
+                    row["Ename"] = txtBoxEmpNameOut.Text;
+                    row["Salary"] = txtBoxEmpSalaryOut.Text;
+                    row.EndEdit();
+                    this.adapter.Update(dataSet.Tables["Employees2"]);
+                    MessageBox.Show("Employee2 record updated.", "Update");
+                }
+            }
+
+
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+
             using (connection = new SqlConnection(connectionString))
             using (adapter = new SqlDataAdapter("SELECT * FROM Employees2", connection))
             using (builder = new SqlCommandBuilder(adapter))
             using (dataSet = new DataSet())
             {
-                //fill the dataset object
-                adapter.Fill(dataSet, "Employees2");
-                // add primary key constraint
-                dataSet.Tables["Employees2"].Constraints.Add("Empno_PK",
-                    dataSet.Tables["Employees2"].Columns["Empno"], true);
-
-                //code to update the data
                 int eno = int.Parse(txtBoxIdInsert.Text);
-                DataRow row;
-                row = dataSet.Tables["Employees2"].Rows.Find(eno);
-                row.BeginEdit();
-                row["Ename"] = txtBoxEmpNameOut.Text;
-                row["Salary"] = txtBoxEmpSalaryOut.Text;
-                row.EndEdit();
-                adapter.Update(dataSet.Tables["Employees2"]);
+                //fill the dataset object
+                this.adapter.Fill(dataSet, "Employees2");
+                // delete row based on employee number
+                this.dataSet.Tables["Employees2"].Rows.Find(eno).Delete();
+                //update data adapter
+                this.adapter.Update(dataSet.Tables["Employees2"]);
+
                 MessageBox.Show("Employee2 record updated.", "Update");
+                this.txtBoxEmpNameOut.Clear();
+                this.txtBoxEmpSalaryOut.Clear();
+                this.txtBoxEmpHiredateOut.Clear();
             }
+
         }
     }
 }
