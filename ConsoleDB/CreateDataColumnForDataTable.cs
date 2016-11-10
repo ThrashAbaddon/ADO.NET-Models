@@ -12,8 +12,8 @@ namespace ConsoleDB
             @"Data Source=KUSARI-PC\SQLEXPRESS;Initial Catalog=TSQL2012;Integrated Security=True;";
         static void Main(string[] args)
         {
-            GetCount();
-
+            GetTable();
+           // GetCount();
         }
 
         static void AddsColumnsToTheTable()
@@ -171,6 +171,36 @@ namespace ConsoleDB
             {
                 connection.Close();
             }
+        }
+
+        static void GetTable()
+        {
+            string sqlSelect = @"SELECT
+                                     empid
+                                    ,firstname
+                                    ,lastname
+                                 FROM
+                                     HR.Employees; ";
+
+            SqlConnection connection = new SqlConnection(sqlConnectString);
+
+            // Create the command and open the connection
+            SqlCommand command = new SqlCommand(sqlSelect, connection);
+            connection.Open();
+
+            // Create the DataReader to retrieve data
+            using (SqlDataReader dr = command.ExecuteReader())
+            {
+                while (dr.Read())
+                {
+                    // Output fields from DataReader row
+                    Console.WriteLine(
+                        "empid = {0}\t firstname = {1}\t lastname = {2}",
+                        dr["empid"], dr["firstname"], dr["lastname"]);
+                }
+            }
+            connection.Close();
+            command.Dispose();
         }
     }
 }
