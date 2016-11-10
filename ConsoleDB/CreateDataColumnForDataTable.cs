@@ -73,7 +73,7 @@ namespace ConsoleDB
 
             // Add a DataTable named Table-1 directly
             DataTable dt1 = ds.Tables.Add("Tablica-1");
-            // ... Configure the DataTable -- add some columns, etc.
+            //Configure the DataTable, you can add some columns, etc.
 
             // Add a DataTable named Tablica-2 by creating the table
             // and adding it to the DataSet
@@ -87,6 +87,7 @@ namespace ConsoleDB
             column1.DefaultValue = 0;
             column1.Unique = true;
             column1.AllowDBNull = false;
+
 
             // Add multiple empty DataTables to the DataSet
             DataTable dt3 = new DataTable("Tablica-3");
