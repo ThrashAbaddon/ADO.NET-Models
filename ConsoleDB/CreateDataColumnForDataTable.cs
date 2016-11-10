@@ -12,8 +12,8 @@ namespace ConsoleDB
             @"Data Source=KUSARI-PC\SQLEXPRESS;Initial Catalog=TSQL2012;Integrated Security=True;";
         static void Main(string[] args)
         {
-            GetTable();
-           // GetCount();
+            GetTableAndOutputFromDataReader();
+            // GetCount();
         }
 
         static void AddsColumnsToTheTable()
@@ -173,7 +173,7 @@ namespace ConsoleDB
             }
         }
 
-        static void GetTable()
+        static void GetTableAndOutputFromDataReader()
         {
             string sqlSelect = @"SELECT
                                      empid
@@ -182,25 +182,22 @@ namespace ConsoleDB
                                  FROM
                                      HR.Employees; ";
 
-            SqlConnection connection = new SqlConnection(sqlConnectString);
-
-            // Create the command and open the connection
-            SqlCommand command = new SqlCommand(sqlSelect, connection);
-            connection.Open();
-
-            // Create the DataReader to retrieve data
-            using (SqlDataReader dr = command.ExecuteReader())
+            using (SqlConnection connection = new SqlConnection(sqlConnectString))
+            using (SqlCommand command = new SqlCommand(sqlSelect, connection))
             {
-                while (dr.Read())
+                connection.Open();
+                // Create the DataReader to retrieve data
+                using (SqlDataReader dr = command.ExecuteReader())
                 {
-                    // Output fields from DataReader row
-                    Console.WriteLine(
-                        "empid = {0}\t firstname = {1}\t lastname = {2}",
-                        dr["empid"], dr["firstname"], dr["lastname"]);
+                    while (dr.Read())
+                    {
+                        // Output fields from DataReader row
+                        Console.WriteLine(
+                            "empid = {0}\t firstname = {1}\t lastname = {2}",
+                            dr["empid"], dr["firstname"], dr["lastname"]);
+                    }
                 }
             }
-            connection.Close();
-            command.Dispose();
         }
     }
 }
