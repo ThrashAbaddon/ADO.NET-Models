@@ -15,14 +15,9 @@ namespace ConsoleDB
         static void Main(string[] args)
         {
 
-            // Connect using .NET data provider for SQL Server and integrated
-            // security
+            // Connect using .NET data provider for SQL Server and integrated security
             string sqlConnectString1 = 
                 @"Data Source=KUSARI-PC\SQLEXPRESS;Initial Catalog=TSQL2012;Integrated Security=True;";
-
-
-
-
 
             using (SqlConnection connection = new SqlConnection(sqlConnectString1))
             {
@@ -36,14 +31,6 @@ namespace ConsoleDB
                 Console.WriteLine("DataSource = {0}", connection.DataSource);
                 Console.WriteLine("ServerVersion = {0}", connection.ServerVersion);
             }
-
-
-
-
-            DataTable dt = new DataTable();
-
-
-
 
             Console.WriteLine("\nPress any key to continue.");
             Console.ReadKey();
