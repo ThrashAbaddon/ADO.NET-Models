@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,9 +11,13 @@ namespace ConsoleDB
 {
     class CreateDataColumnForDataTable
     {
+        // Create the connection
+        static string sqlConnectString =
+            @"Data Source=KUSARI-PC\SQLEXPRESS;Initial Catalog=TSQL2012;Integrated Security=True;";
         static void Main(string[] args)
         {
-
+            GetCount();
+           // Method();
         }
 
         static void AddsColumnsToTheTable()
@@ -100,6 +106,75 @@ namespace ConsoleDB
             Console.WriteLine($"DataSet has {ds.Tables.Count} DataTables named");
             foreach (DataTable dt in ds.Tables)
                 Console.WriteLine($"\t{ dt.TableName}");
+        }
+
+
+        static void Method()
+        {
+            string sqlSelect = @"SELECT TOP 5
+                                    title
+                                   ,firstname
+                                   ,lastname
+                                FROM
+                                    [HR].[Employees]";
+            using (SqlDataAdapter da =
+                new SqlDataAdapter(sqlSelect, sqlConnectString))
+            {
+
+                // Create the table mapping to map the default table name 'Employees'.
+                DataTableMapping dtm =
+                    da.TableMappings.Add("[HR].[Employees]", "mappedContact");
+
+                // Create column mappings
+                dtm.ColumnMappings.Add("title", "mappedTitle");
+                dtm.ColumnMappings.Add("firstname", "mappedFirstName");
+                dtm.ColumnMappings.Add("lastname", "mappedLastName");
+
+                // Create and fill the DataSet
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+
+                Console.WriteLine("DataTable name = {0}",
+                    ds.Tables[0].TableName);
+
+                foreach (DataColumn col in ds.Tables["mappedContact"].Columns)
+                    Console.WriteLine("\tDataColumn {0} name = {1}",
+                        col.Ordinal, col.ColumnName);
+
+
+                Console.WriteLine();
+
+                foreach (DataRow row in ds.Tables["mappedContact"].Rows)
+                    Console.WriteLine(
+                        "Title = {0}, FirstName = {1}, LastName = {2}",
+                        row["mappedTitle"], row["mappedFirstName"], row["mappedLastName"]);
+            }
+        }
+
+
+        static void GetCount()
+        {
+            string sqlSelect = "SELECT COUNT(*) FROM HR.Employees;";
+            SqlConnection connection = new SqlConnection();
+            try
+            {
+                connection.ConnectionString = sqlConnectString;
+                // Create the scalar command and open the connection
+                SqlCommand command = new SqlCommand(sqlSelect, connection);
+                connection.Open();
+
+                // Execute the scalar SQL statement and store results.
+                int count = Convert.ToInt32(command.ExecuteScalar());
+                Console.WriteLine("Record count in Person.Contact = {0}", count);
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
     }
 }
