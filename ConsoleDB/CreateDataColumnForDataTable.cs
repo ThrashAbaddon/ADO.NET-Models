@@ -12,7 +12,7 @@ namespace ConsoleDB
             @"Data Source=KUSARI-PC\SQLEXPRESS;Initial Catalog=TSQL2012;Integrated Security=True;";
         static void Main(string[] args)
         {
-            GetTheResultFromDataSetOrDataTable();
+            QueryWithParameter();
         }
 
         static void AddsColumnsToTheTable()
@@ -294,7 +294,7 @@ namespace ConsoleDB
             Console.ReadLine();
         }
 
-        static void ParameterizedQuery()
+        static void QueryWithParameter()
         {
             string sqlSelect = @"SELECT
                                     p.productid
@@ -308,12 +308,11 @@ namespace ConsoleDB
             using (SqlConnection sqlConnection = new SqlConnection(_sqlConnectString))
             using (SqlCommand sqlCommand = new SqlCommand(sqlSelect, sqlConnection))
             {
+                // Add the GivenPrice parameter to the command
+                sqlCommand.Parameters.Add("@givenPrice", SqlDbType.Money);
 
-                // Add the TotalDue parameter to the command
-                sqlCommand.Parameters.Add("@TotalDue", SqlDbType.Money);
-
-                // Set the value of the TotalDue paramter
-                sqlCommand.Parameters["@TotalDue"].Value = 200000;
+                // Set the value of the GivenPrice paramter
+                sqlCommand.Parameters["@givenPrice"].Value = 100;
 
                 // Use a DataAdapter to retrieve the result set into a DataTable
                 SqlDataAdapter sqlDa = new SqlDataAdapter(sqlCommand);
@@ -322,12 +321,13 @@ namespace ConsoleDB
 
                 foreach (DataRow row in sqlDt.Rows)
                 {
-                    Console.WriteLine
-                        ($"Productid = { row["productid"]}, ProductName = {row["productname"]}," +
+                    Console.WriteLine(
+                        $"Productid = { row["productid"]}," +
+                        $" ProductName = {row["productname"]}," +
                         $"UnitPrice = { row["unitprice"]}");
                 }
             }
-            Console.WriteLine();
+            Console.ReadKey();
         }
 
     }
