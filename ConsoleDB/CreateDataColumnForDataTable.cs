@@ -293,6 +293,43 @@ namespace ConsoleDB
             }
             Console.ReadLine();
         }
+
+        static void ParameterizedQuery()
+        {
+            string sqlSelect = @"SELECT
+                                    p.productid
+                                    ,p.productname
+                                    ,p.unitprice
+                                FROM
+                                    Production.Products p
+                                WHERE  
+                                    p.unitprice > @givenPrice;";
+
+            using (SqlConnection sqlConnection = new SqlConnection(_sqlConnectString))
+            using (SqlCommand sqlCommand = new SqlCommand(sqlSelect, sqlConnection))
+            {
+
+                // Add the TotalDue parameter to the command
+                sqlCommand.Parameters.Add("@TotalDue", SqlDbType.Money);
+
+                // Set the value of the TotalDue paramter
+                sqlCommand.Parameters["@TotalDue"].Value = 200000;
+
+                // Use a DataAdapter to retrieve the result set into a DataTable
+                SqlDataAdapter sqlDa = new SqlDataAdapter(sqlCommand);
+                DataTable sqlDt = new DataTable();
+                sqlDa.Fill(sqlDt);
+
+                foreach (DataRow row in sqlDt.Rows)
+                {
+                    Console.WriteLine
+                        ($"Productid = { row["productid"]}, ProductName = {row["productname"]}," +
+                        $"UnitPrice = { row["unitprice"]}");
+                }
+            }
+            Console.WriteLine();
+        }
+
     }
 }
 
